@@ -12,9 +12,11 @@
 
     <div id="g_id_onload"
         data-client_id="970105812972-gup6op9f8s9ke9d6hglkt13dib0ov015.apps.googleusercontent.com"
+        data-callback="handleCredentialResponse"
         data-auto_prompt="false"
-        data-callback="handleCredentialResponse">
+        data-auto_select="true">
     </div>
+
      <div class="g_id_signin"
         data-type="standard"
         data-size="large"
@@ -34,9 +36,9 @@
         function handleCredentialResponse(response) {
 
           
-        const body = { id_token: response.credential};
+        const body = { id_token: response.credential };
 
-        fetch('http://localhost:8098/api/auth/google', {
+        fetch('http://localhost:8098/api/auth/google', { 
             method: 'POST',
             headers: {
                 'Content-type' : 'application/json'
