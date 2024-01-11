@@ -2,9 +2,10 @@ const { Schema, model } = require('mongoose');
 
 
 const CategoriaSchema = Schema({
-    rol: {
+    rol: { //En caso de que no sirva el nombre rol, utilizar el de nombre
         type: String,
-        required: [true,'El nombre es obligatorio']
+        required: [true,'El nombre es obligatorio'],
+        unique: true
     },
 
     estado: {
@@ -18,5 +19,11 @@ const CategoriaSchema = Schema({
         required: true
     }
 });
+
+CategoriaSchema.methods.toJSON = function() {
+    const { __v, estado, ...data  } = this.toObject();
+    return data;
+}
+
 
 module.exports = model ('Categoria', CategoriaSchema);
